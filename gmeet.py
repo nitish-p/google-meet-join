@@ -1,9 +1,8 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
-from getpass import getpass
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
-import pyautogui
 import time
 
 
@@ -45,8 +44,11 @@ def login(meetid):
         driver.get( meetid )
 
         time.sleep( 3 )
-        driver.find_element_by_xpath( '//*[@id="yDmH0d"]/div[3]/div/div[2]/div[3]/div/span' ).click()
+        driver.find_element_by_xpath( '/html/body' ).click()
+        time.sleep( 3 )
 
+        ActionChains(driver).key_down(Keys.CONTROL).send_keys('d').key_up(Keys.CONTROL).perform()
+        ActionChains(driver).key_down(Keys.CONTROL).send_keys('e').key_up(Keys.CONTROL).perform()
         print( 'tried to join' )
 
         time.sleep( 2 )
